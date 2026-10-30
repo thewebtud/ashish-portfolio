@@ -1,0 +1,57 @@
+.art {
+  --a: #22d3ee;
+  --b: #60a5fa;
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 7rem;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--a) 28%, #060a14), color-mix(in srgb, var(--b) 16%, #060a14));
+  border: 1px solid color-mix(in srgb, var(--a) 35%, transparent);
+}
+
+.large {
+  height: 9rem;
+}
+
+.cyan {
+  --a: #22d3ee;
+  --b: #60a5fa;
+}
+
+.violet {
+  --a: #a78bfa;
+  --b: #f472b6;
+}
+
+.blue {
+  --a: #60a5fa;
+  --b: #818cf8;
+}
+
+.green {
+  --a: #34d399;
+  --b: #22d3ee;
+}
+
+.amber {
+  --a: #fbbf24;
+  --b: #fb923c;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.icon {
+  position: relative;
+  font-size: 2.4rem;
+  color: var(--a);
+  filter: drop-shadow(0 0 14px var(--a));
+}

@@ -1,0 +1,76 @@
+.tilt {
+  height: 100%;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(17, 26, 48, 0.7);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.25s;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--color-border-strong);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.name {
+  font-size: var(--text-lg);
+}
+
+.tagline {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+}
+
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: flex-start;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: var(--color-cyan);
+  font-weight: 650;
+  font-size: var(--text-sm);
+}
+
+/* Stretched hit area: the whole card opens the details */
+.open::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: var(--radius-lg);
+}
+
+.open:focus-visible {
+  outline: none;
+}
+
+.open:focus-visible::after {
+  outline: 3px solid var(--color-cyan);
+  outline-offset: 2px;
+}

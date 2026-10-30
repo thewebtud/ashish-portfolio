@@ -1,0 +1,23 @@
+.skip {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-cyan);
+  color: var(--color-on-accent);
+  font-weight: 700;
+  transform: translateY(-200%);
+}
+
+.skip:focus {
+  transform: translateY(0);
+  text-decoration: none;
+}
+
+.main {
+  position: relative;
+  z-index: 1;
+  outline: none;
+}

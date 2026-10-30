@@ -1,0 +1,46 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  animation: fade-in 1.2s ease both;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 75%);
+  animation: drift 24s linear infinite;
+}
+
+.glow {
+  --px: 70vw;
+  --py: 20vh;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px circle at var(--px) var(--py), rgba(34, 211, 238, 0.09), transparent 60%),
+    radial-gradient(700px circle at 10% 90%, rgba(167, 139, 250, 0.08), transparent 60%);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes drift {
+  to {
+    background-position: 56px 56px;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}

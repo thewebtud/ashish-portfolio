@@ -1,0 +1,53 @@
+:root {
+  --color-bg: #060a14;
+  --color-bg-elevated: #0c1324;
+  --color-surface: #111a30;
+  --color-surface-hover: #16213d;
+  --color-border: rgba(148, 163, 184, 0.18);
+  --color-border-strong: rgba(34, 211, 238, 0.45);
+
+  --color-text: #e8ecf8;
+  --color-text-muted: #a3aed0;
+  --color-text-faint: #8190b8;
+
+  --color-cyan: #22d3ee;
+  --color-blue: #60a5fa;
+  --color-violet: #a78bfa;
+  --color-green: #34d399;
+  --color-amber: #fbbf24;
+  --color-on-accent: #04101c;
+
+  --gradient-accent: linear-gradient(120deg, #22d3ee 0%, #60a5fa 45%, #a78bfa 100%);
+  --glow-cyan: 0 0 24px rgba(34, 211, 238, 0.35);
+  --glow-violet: 0 0 24px rgba(167, 139, 250, 0.35);
+
+  --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  --text-2xl: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+  --text-hero: clamp(2.5rem, 1.4rem + 5vw, 5rem);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-pill: 999px;
+
+  --container: 72rem;
+  --nav-height: 4.25rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

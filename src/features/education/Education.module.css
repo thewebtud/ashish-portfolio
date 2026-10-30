@@ -1,0 +1,42 @@
+.list {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 40rem;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: rgba(17, 26, 48, 0.62);
+  backdrop-filter: blur(8px);
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: var(--radius-md);
+  background: rgba(167, 139, 250, 0.14);
+  color: var(--color-violet);
+  font-size: 1.5rem;
+}
+
+.school {
+  font-size: var(--text-lg);
+}
+
+.degree {
+  color: var(--color-text-muted);
+}
+
+.meta {
+  margin-top: var(--space-1);
+  color: var(--color-cyan);
+  font-size: var(--text-sm);
+}

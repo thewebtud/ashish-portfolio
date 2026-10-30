@@ -1,0 +1,38 @@
+.tilt {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  border-radius: var(--radius-lg);
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.25s var(--ease-out);
+  will-change: transform;
+}
+
+.tilt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    380px circle at var(--mx) var(--my),
+    rgba(34, 211, 238, 0.16),
+    transparent 60%
+  );
+  transition: opacity 0.3s;
+}
+
+.tilt:hover::before,
+.tilt:focus-within::before {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .tilt {
+    transform: none;
+  }
+}

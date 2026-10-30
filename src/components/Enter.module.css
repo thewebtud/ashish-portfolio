@@ -1,0 +1,10 @@
+.enter {
+  animation: enter 0.6s var(--ease-out) var(--enter-delay) both;
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--enter-y));
+  }
+}

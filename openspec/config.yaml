@@ -1,0 +1,56 @@
+schema: spec-driven
+githubCopilot:
+  cloudAgent: false
+
+# Project context
+# Only constraints that cannot be inferred from the code.
+context: |
+  Product: Ashish Kumar's personal marketing portfolio website. The project is
+  currently a bare Vite + React scaffold; the portfolio itself is yet to be built.
+  Owner: Ashish Kumar, Lead Frontend Developer (8+ years; React, TypeScript,
+  Clean Architecture, accessibility, performance, AI-assisted development).
+  Purpose: market Ashish to recruiters, hiring managers and prospective clients.
+  Every feature should help a visitor quickly understand his expertise, see
+  proof of impact, and get in touch.
+  Content source of truth: his resume (Omnicom Media Group - Q Cultural Insights,
+  Q-Assist, Q-Sparks; Cognizant - Telstra and Boost Prepaid Recharge; SRM
+  University B.Tech CSE). Do not invent employers, metrics, or claims; flag
+  missing content as an open question instead.
+  Privacy: Ashish has approved publishing his email (ashish.codes2@gmail.com),
+  both phone numbers (8979513242, 9625977569) and LinkedIn
+  (https://www.linkedin.com/in/devnextcubical/). Keep them in configurable content
+  data and not as literal strings in the built HTML. Do not add other personal data.
+  Confidentiality: Omnicom/Cognizant work is proprietary; describe it at the level
+  of the resume only, with no internal screenshots, URLs, or data.
+  Tone: confident, concise, professional, and outcome-oriented.
+  Quality bar: the site is itself a demonstration of craft. It must be responsive
+  (mobile-first), meet WCAG 2.1 AA, and be fast (target Lighthouse 90+ in every
+  category). It must be SEO- and social-share-friendly (meta tags, Open Graph).
+  Content (experience, projects, skills) should live in structured data
+  separate from presentation components.
+  Tech direction: stay on the existing Vite + React stack, and keep it a static
+  site deployable to static hosting. Keep dependencies minimal and justify each
+  new one in the design. TypeScript adoption is an open decision to be settled in
+  the first change.
+
+rules:
+  proposal:
+    - State the visitor/recruiter value of the change and what is out of scope
+    - List any content or assets needed from Ashish before implementation
+  specs:
+    - Include accessibility and responsive-behavior scenarios for every UI requirement
+  design:
+    - Justify any new dependency and note its bundle-size impact
+    - Describe how content data is separated from presentation
+  tasks:
+    - Keep tasks small and independently verifiable
+    - Include lint, build, and an accessibility/responsive check as verification steps
+
+operations:
+  apply:
+    guidance:
+      - Run `npm run lint` and `npm run build` before marking tasks complete
+      - Use only resume-backed content; leave clearly marked placeholders otherwise
+  archive:
+    guidance:
+      - Summarize the archive outcome before finishing
