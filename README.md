@@ -91,3 +91,26 @@ Lighthouse (mobile, production preview): Performance 100, Accessibility 100, Bes
 
 - Set the real site URL in the Open Graph and Twitter tags in `index.html` (social platforms need absolute image URLs, for example `https://example.com/og-image.jpg`).
 - If the site is served from a sub-path (for example GitHub Pages project sites), set `base` in `vite.config.ts`.
+
+## CI/CD
+
+Workflows live in [`.github/workflows/`](.github/workflows).
+
+| Workflow          | Trigger                | What it does                                                    |
+| ----------------- | ---------------------- | --------------------------------------------------------------- |
+| `ci.yml`          | PRs, non-`main` pushes | `npm ci`, lint, test, build                                     |
+| `deploy-pages.yml`| push to `main`         | Runs CI, builds with `VITE_BASE=/<repo>/`, deploys to GitHub Pages |
+| `deploy-vercel.yml` | push to `main`, PRs  | Runs CI, deploys with the Vercel CLI (production on `main`, preview on PRs) |
+
+### One-time setup
+
+**GitHub Pages:** Repo → Settings → Pages → Source: **GitHub Actions**. Site URL: `https://<user>.github.io/<repo>/`.
+
+**Vercel:**
+
+1. Run `npx vercel link` locally once; it writes `.vercel/project.json` (git-ignored) with `orgId` and `projectId`.
+2. Create a token at https://vercel.com/account/tokens.
+3. Add repo secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
+4. In the Vercel project, disable its own Git auto-deploys (Settings → Git) to avoid double deploys.
+
+The asset base path is controlled by `VITE_BASE` (default `/`, used by Vercel and local dev).
