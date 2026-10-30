@@ -47,14 +47,14 @@
 
 .marker[data-current='true'] {
   background: var(--color-cyan);
-  box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.18);
+  box-shadow: 0 0 0 6px var(--marker-halo);
   animation: pulse 2.4s ease-in-out infinite;
 }
 
 .card {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background: rgba(17, 26, 48, 0.62);
+  background: var(--color-surface-glass);
   backdrop-filter: blur(8px);
   overflow: hidden;
   transition: border-color 0.25s;
@@ -154,8 +154,8 @@
 
 .project {
   padding: var(--space-4) var(--space-5);
-  border-left: 2px solid rgba(34, 211, 238, 0.4);
-  background: rgba(6, 10, 20, 0.45);
+  border-left: 2px solid var(--border-cyan);
+  background: var(--color-inset);
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
 }
 
@@ -197,6 +197,6 @@
 
 @keyframes pulse {
   50% {
-    box-shadow: 0 0 0 10px rgba(34, 211, 238, 0);
+    box-shadow: 0 0 0 10px transparent;
   }
 }

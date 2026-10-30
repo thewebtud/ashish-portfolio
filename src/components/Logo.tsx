@@ -25,33 +25,36 @@ import {
 } from 'react-icons/si'
 import type { IconKey } from '../content/types'
 
-const logos: Record<IconKey, { Icon: IconType; color: string }> = {
-  react: { Icon: SiReact, color: '#61dafb' },
-  typescript: { Icon: SiTypescript, color: '#3b9dff' },
-  javascript: { Icon: SiJavascript, color: '#f7df1e' },
-  redux: { Icon: SiRedux, color: '#a78bfa' },
-  html5: { Icon: SiHtml5, color: '#f97316' },
-  css: { Icon: SiCss, color: '#38bdf8' },
-  sass: { Icon: SiSass, color: '#f472b6' },
-  tailwind: { Icon: SiTailwindcss, color: '#22d3ee' },
-  styledComponents: { Icon: SiStyledcomponents, color: '#f9a8d4' },
-  bootstrap: { Icon: SiBootstrap, color: '#a78bfa' },
-  chakra: { Icon: SiChakraui, color: '#2dd4bf' },
-  mui: { Icon: SiMui, color: '#60a5fa' },
-  axios: { Icon: SiAxios, color: '#a78bfa' },
-  mysql: { Icon: SiMysql, color: '#38bdf8' },
-  git: { Icon: SiGit, color: '#fb923c' },
-  jest: { Icon: SiJest, color: '#f87171' },
-  testingLibrary: { Icon: SiTestinglibrary, color: '#f87171' },
-  webpack: { Icon: SiWebpack, color: '#7dd3fc' },
-  docker: { Icon: SiDocker, color: '#38bdf8' },
-  opentelemetry: { Icon: SiOpentelemetry, color: '#fbbf24' },
-  reactRouter: { Icon: SiReactrouter, color: '#f87171' },
-  githubCopilot: { Icon: SiGithubcopilot, color: '#e8ecf8' },
+const logos: Record<IconKey, IconType> = {
+  react: SiReact,
+  typescript: SiTypescript,
+  javascript: SiJavascript,
+  redux: SiRedux,
+  html5: SiHtml5,
+  css: SiCss,
+  sass: SiSass,
+  tailwind: SiTailwindcss,
+  styledComponents: SiStyledcomponents,
+  bootstrap: SiBootstrap,
+  chakra: SiChakraui,
+  mui: SiMui,
+  axios: SiAxios,
+  mysql: SiMysql,
+  git: SiGit,
+  jest: SiJest,
+  testingLibrary: SiTestinglibrary,
+  webpack: SiWebpack,
+  docker: SiDocker,
+  opentelemetry: SiOpentelemetry,
+  reactRouter: SiReactrouter,
+  githubCopilot: SiGithubcopilot,
 }
 
-/** Decorative brand logo; the skill name is always rendered next to it as text. */
+/**
+ * Decorative brand logo; the skill name is always rendered next to it as text.
+ * Colours come from the `--logo-*` theme tokens so each theme can pick a legible shade.
+ */
 export function Logo({ name, size = '1.25em' }: { name: IconKey; size?: string }) {
-  const { Icon, color } = logos[name]
-  return <Icon aria-hidden="true" focusable="false" style={{ color, width: size, height: size }} />
+  const Icon = logos[name]
+  return <Icon aria-hidden="true" focusable="false" style={{ color: `var(--logo-${name})`, width: size, height: size }} />
 }

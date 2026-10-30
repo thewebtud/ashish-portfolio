@@ -1,0 +1,30 @@
+.toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin-left: var(--space-2);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  color: var(--color-text);
+  font-size: 1.05rem;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    transform 0.2s var(--ease-out);
+}
+
+.toggle:hover {
+  border-color: var(--color-border-strong);
+  background: var(--tint-cyan);
+  transform: rotate(18deg);
+}
+
+@media (max-width: 62rem) {
+  .toggle {
+    margin-left: auto;
+    margin-right: var(--space-2);
+  }
+}

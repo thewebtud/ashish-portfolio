@@ -3,7 +3,7 @@
   inset: 0 0 auto 0;
   z-index: 50;
   height: var(--nav-height);
-  background: rgba(6, 10, 20, 0.72);
+  background: var(--color-bg-translucent);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border);
 }
@@ -33,6 +33,10 @@
   display: flex;
   align-items: center;
   gap: var(--space-1);
+}
+
+.nav {
+  margin-left: auto;
 }
 
 .link {
@@ -79,7 +83,7 @@
 }
 
 .resume:hover {
-  background: rgba(34, 211, 238, 0.12);
+  background: var(--tint-cyan);
   text-decoration: none;
 }
 
@@ -105,7 +109,7 @@
     inset: var(--nav-height) 0 auto 0;
     display: none;
     padding: var(--space-4) 1.25rem var(--space-5);
-    background: rgba(6, 10, 20, 0.97);
+    background: var(--color-bg-solid);
     border-bottom: 1px solid var(--color-border);
     max-height: calc(100vh - var(--nav-height));
     overflow-y: auto;

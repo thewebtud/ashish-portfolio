@@ -3,6 +3,7 @@ import { FaBars, FaDownload, FaXmark } from 'react-icons/fa6'
 import { site } from '../content/site'
 import { useScrollSpy } from '../hooks/useScrollSpy'
 import { sectionIds, sections } from './sections'
+import { ThemeToggle } from './ThemeToggle'
 import styles from './NavBar.module.css'
 
 export function NavBar() {
@@ -57,6 +58,8 @@ export function NavBar() {
             </li>
           </ul>
         </nav>
+
+        <ThemeToggle />
 
         <button
           ref={toggleRef}

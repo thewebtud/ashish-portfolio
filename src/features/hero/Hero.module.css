@@ -100,7 +100,7 @@
   border-radius: 50%;
   object-fit: cover;
   background: var(--color-surface);
-  border: 2px solid rgba(34, 211, 238, 0.4);
+  border: 2px solid var(--border-cyan);
 }
 
 .initials {
@@ -117,7 +117,7 @@
   width: 3.25rem;
   height: 3.25rem;
   border-radius: var(--radius-md);
-  background: rgba(12, 19, 36, 0.9);
+  background: var(--color-surface-floating);
   border: 1px solid var(--color-border-strong);
   font-size: 1.6rem;
   box-shadow: var(--glow-cyan);
@@ -127,21 +127,21 @@
 .floatA {
   top: 4%;
   right: -4%;
-  color: #61dafb;
+  color: var(--logo-react);
 }
 
 .floatB {
   bottom: 8%;
   left: -6%;
-  color: #3b9dff;
+  color: var(--logo-typescript);
   animation-delay: -3s;
 }
 
 .terminal {
   width: min(100%, 24rem);
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--terminal-border);
   border-radius: var(--radius-md);
-  background: rgba(8, 13, 26, 0.85);
+  background: var(--terminal-bg);
   backdrop-filter: blur(6px);
   overflow: hidden;
   font-size: var(--text-xs);
@@ -153,32 +153,32 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.55rem 0.8rem;
-  border-bottom: 1px solid var(--color-border);
-  background: rgba(148, 163, 184, 0.06);
+  border-bottom: 1px solid var(--terminal-border);
+  background: var(--terminal-bar);
 }
 
 .terminalBar span {
   width: 0.65rem;
   height: 0.65rem;
   border-radius: 50%;
-  background: var(--color-text-faint);
+  background: var(--terminal-dim);
 }
 
 .terminalBar span:nth-child(1) {
-  background: #f87171;
+  background: var(--terminal-red);
 }
 
 .terminalBar span:nth-child(2) {
-  background: var(--color-amber);
+  background: var(--terminal-amber);
 }
 
 .terminalBar span:nth-child(3) {
-  background: var(--color-green);
+  background: var(--terminal-green);
 }
 
 .terminalBar em {
   margin-left: auto;
-  color: var(--color-text-faint);
+  color: var(--terminal-dim);
   font-style: normal;
 }
 
@@ -188,15 +188,15 @@
   white-space: pre-wrap;
   line-height: 1.7;
   font-family: inherit;
-  color: var(--color-text);
+  color: var(--terminal-text);
 }
 
 .dim {
-  color: var(--color-text-faint);
+  color: var(--terminal-dim);
 }
 
 .out {
-  color: var(--color-cyan);
+  color: var(--terminal-out);
 }
 
 .statList {
@@ -212,7 +212,7 @@
   padding: var(--space-4);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: rgba(17, 26, 48, 0.55);
+  background: var(--color-surface-glass);
   backdrop-filter: blur(8px);
 }
 

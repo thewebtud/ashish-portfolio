@@ -1,25 +1,109 @@
 :root {
+  color-scheme: dark;
+
+  /* Surfaces */
   --color-bg: #060a14;
   --color-bg-elevated: #0c1324;
   --color-surface: #111a30;
   --color-surface-hover: #16213d;
+  --color-surface-glass: rgba(17, 26, 48, 0.62);
+  --color-surface-glass-strong: rgba(17, 26, 48, 0.7);
+  --color-surface-floating: rgba(12, 19, 36, 0.9);
+  --color-bg-translucent: rgba(6, 10, 20, 0.72);
+  --color-bg-solid: rgba(6, 10, 20, 0.97);
+  --color-inset: rgba(6, 10, 20, 0.45);
+  --color-overlay: rgba(3, 6, 14, 0.75);
   --color-border: rgba(148, 163, 184, 0.18);
   --color-border-strong: rgba(34, 211, 238, 0.45);
 
+  /* Text */
   --color-text: #e8ecf8;
   --color-text-muted: #a3aed0;
   --color-text-faint: #8190b8;
 
+  /* Accent colours used as text and icons */
   --color-cyan: #22d3ee;
   --color-blue: #60a5fa;
   --color-violet: #a78bfa;
   --color-green: #34d399;
   --color-amber: #fbbf24;
-  --color-on-accent: #04101c;
+  --color-pink: #f472b6;
+  --color-indigo: #818cf8;
+  --color-orange: #fb923c;
 
+  /* Filled controls */
+  --color-accent: #22d3ee;
+  --color-on-accent: #04101c;
   --gradient-accent: linear-gradient(120deg, #22d3ee 0%, #60a5fa 45%, #a78bfa 100%);
+  --gradient-accent-fill: linear-gradient(120deg, #22d3ee 0%, #60a5fa 45%, #a78bfa 100%);
+
+  /* Tints and accent borders */
+  --tint-neutral: rgba(148, 163, 184, 0.08);
+  --tint-cyan: rgba(34, 211, 238, 0.12);
+  --tint-cyan-strong: rgba(34, 211, 238, 0.16);
+  --tint-violet: rgba(167, 139, 250, 0.12);
+  --tint-green: rgba(52, 211, 153, 0.1);
+  --tint-amber: rgba(251, 191, 36, 0.1);
+  --border-cyan: rgba(34, 211, 238, 0.4);
+  --border-violet: rgba(167, 139, 250, 0.4);
+  --border-green: rgba(52, 211, 153, 0.4);
+  --border-amber: rgba(251, 191, 36, 0.4);
+
+  /* Effects */
   --glow-cyan: 0 0 24px rgba(34, 211, 238, 0.35);
+  --glow-cyan-strong: 0 0 34px rgba(34, 211, 238, 0.55);
   --glow-violet: 0 0 24px rgba(167, 139, 250, 0.35);
+  --shadow-dialog: 0 30px 80px rgba(0, 0, 0, 0.6);
+  --marker-halo: rgba(34, 211, 238, 0.18);
+  --color-selection: rgba(34, 211, 238, 0.35);
+  --color-selection-text: #ffffff;
+
+  /* Animated background (RGB triplets are read by the canvas) */
+  --bg-grid-line: rgba(148, 163, 184, 0.06);
+  --bg-glow-1: rgba(34, 211, 238, 0.09);
+  --bg-glow-2: rgba(167, 139, 250, 0.08);
+  --particle-dot: 34, 211, 238;
+  --particle-dot-alpha: 0.5;
+  --particle-line: 96, 165, 250;
+  --particle-line-alpha: 0.22;
+
+  /* Project art */
+  --art-grid-line: rgba(255, 255, 255, 0.07);
+
+  /* Hero terminal: intentionally dark in both themes */
+  --terminal-bg: #0a0f1c;
+  --terminal-bar: rgba(148, 163, 184, 0.06);
+  --terminal-border: rgba(148, 163, 184, 0.18);
+  --terminal-text: #e8ecf8;
+  --terminal-dim: #8190b8;
+  --terminal-out: #22d3ee;
+  --terminal-red: #f87171;
+  --terminal-amber: #fbbf24;
+  --terminal-green: #34d399;
+
+  /* Brand logo colours */
+  --logo-react: #61dafb;
+  --logo-typescript: #3b9dff;
+  --logo-javascript: #f7df1e;
+  --logo-redux: #a78bfa;
+  --logo-html5: #f97316;
+  --logo-css: #38bdf8;
+  --logo-sass: #f472b6;
+  --logo-tailwind: #22d3ee;
+  --logo-styledComponents: #f9a8d4;
+  --logo-bootstrap: #a78bfa;
+  --logo-chakra: #2dd4bf;
+  --logo-mui: #60a5fa;
+  --logo-axios: #a78bfa;
+  --logo-mysql: #38bdf8;
+  --logo-git: #fb923c;
+  --logo-jest: #f87171;
+  --logo-testingLibrary: #f87171;
+  --logo-webpack: #7dd3fc;
+  --logo-docker: #38bdf8;
+  --logo-opentelemetry: #fbbf24;
+  --logo-reactRouter: #f87171;
+  --logo-githubCopilot: #e8ecf8;
 
   --font-sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -50,4 +134,93 @@
   --container: 72rem;
   --nav-height: 4.25rem;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light theme: overrides colour tokens only; spacing, type and radii are shared. */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #f6f8fc;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #eef2fa;
+  --color-surface-glass: rgba(255, 255, 255, 0.78);
+  --color-surface-glass-strong: rgba(255, 255, 255, 0.9);
+  --color-surface-floating: rgba(255, 255, 255, 0.95);
+  --color-bg-translucent: rgba(246, 248, 252, 0.82);
+  --color-bg-solid: rgba(246, 248, 252, 0.98);
+  --color-inset: rgba(15, 23, 42, 0.04);
+  --color-overlay: rgba(15, 23, 42, 0.5);
+  --color-border: rgba(15, 23, 42, 0.14);
+  --color-border-strong: rgba(14, 116, 144, 0.5);
+
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-faint: #5b6b82;
+
+  --color-cyan: #0e7490;
+  --color-blue: #1d4ed8;
+  --color-violet: #6d28d9;
+  --color-green: #047857;
+  --color-amber: #b45309;
+  --color-pink: #be185d;
+  --color-indigo: #4338ca;
+  --color-orange: #c2410c;
+
+  --color-accent: #0e7490;
+  --color-on-accent: #ffffff;
+  --gradient-accent: linear-gradient(120deg, #0891b2 0%, #2563eb 45%, #7c3aed 100%);
+  --gradient-accent-fill: linear-gradient(120deg, #0e7490 0%, #1d4ed8 45%, #6d28d9 100%);
+
+  --tint-neutral: rgba(15, 23, 42, 0.05);
+  --tint-cyan: rgba(14, 116, 144, 0.1);
+  --tint-cyan-strong: rgba(14, 116, 144, 0.14);
+  --tint-violet: rgba(109, 40, 217, 0.1);
+  --tint-green: rgba(4, 120, 87, 0.1);
+  --tint-amber: rgba(180, 83, 9, 0.1);
+  --border-cyan: rgba(14, 116, 144, 0.4);
+  --border-violet: rgba(109, 40, 217, 0.4);
+  --border-green: rgba(4, 120, 87, 0.4);
+  --border-amber: rgba(180, 83, 9, 0.4);
+
+  --glow-cyan: 0 0 24px rgba(14, 116, 144, 0.16);
+  --glow-cyan-strong: 0 0 30px rgba(14, 116, 144, 0.3);
+  --glow-violet: 0 0 24px rgba(109, 40, 217, 0.16);
+  --shadow-dialog: 0 30px 80px rgba(15, 23, 42, 0.28);
+  --marker-halo: rgba(14, 116, 144, 0.2);
+  --color-selection: rgba(14, 116, 144, 0.25);
+  --color-selection-text: #0f172a;
+
+  --bg-grid-line: rgba(15, 23, 42, 0.06);
+  --bg-glow-1: rgba(14, 116, 144, 0.08);
+  --bg-glow-2: rgba(109, 40, 217, 0.07);
+  --particle-dot: 14, 116, 144;
+  --particle-dot-alpha: 0.45;
+  --particle-line: 37, 99, 235;
+  --particle-line-alpha: 0.2;
+
+  --art-grid-line: rgba(15, 23, 42, 0.07);
+
+  --logo-react: #0891b2;
+  --logo-typescript: #2563eb;
+  --logo-javascript: #a16207;
+  --logo-redux: #7c3aed;
+  --logo-html5: #c2410c;
+  --logo-css: #0369a1;
+  --logo-sass: #be185d;
+  --logo-tailwind: #0e7490;
+  --logo-styledComponents: #be185d;
+  --logo-bootstrap: #6d28d9;
+  --logo-chakra: #0f766e;
+  --logo-mui: #1d4ed8;
+  --logo-axios: #6d28d9;
+  --logo-mysql: #0369a1;
+  --logo-git: #c2410c;
+  --logo-jest: #b91c1c;
+  --logo-testingLibrary: #b91c1c;
+  --logo-webpack: #0369a1;
+  --logo-docker: #0369a1;
+  --logo-opentelemetry: #b45309;
+  --logo-reactRouter: #b91c1c;
+  --logo-githubCopilot: #24292f;
 }

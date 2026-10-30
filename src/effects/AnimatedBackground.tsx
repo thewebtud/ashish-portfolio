@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { useReducedMotion } from '../hooks/useReducedMotion'
+import { subscribeToTheme } from '../theme/theme'
 import styles from './AnimatedBackground.module.css'
 
 interface Particle {
@@ -12,6 +13,24 @@ interface Particle {
 const LINK_DISTANCE = 130
 const POINTER_RADIUS = 150
 const FRAME_INTERVAL = 1000 / 30
+
+interface Palette {
+  dot: string
+  line: string
+  dotAlpha: number
+  lineAlpha: number
+}
+
+function readPalette(): Palette {
+  const style = getComputedStyle(document.documentElement)
+  const read = (name: string, fallback: string) => style.getPropertyValue(name).trim() || fallback
+  return {
+    dot: read('--particle-dot', '34, 211, 238'),
+    line: read('--particle-line', '96, 165, 250'),
+    dotAlpha: parseFloat(read('--particle-dot-alpha', '0.5')),
+    lineAlpha: parseFloat(read('--particle-line-alpha', '0.22')),
+  }
+}
 
 /** Particle network with pointer interaction. Decorative only; lazy-loaded after first paint. */
 export default function AnimatedBackground() {
@@ -30,6 +49,7 @@ export default function AnimatedBackground() {
     const pointer = { x: -9999, y: -9999 }
     let frame = 0
     let last = 0
+    let palette = readPalette()
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
@@ -58,7 +78,7 @@ export default function AnimatedBackground() {
           const q = particles[j]
           const dist = Math.hypot(p.x - q.x, p.y - q.y)
           if (dist < LINK_DISTANCE) {
-            ctx.strokeStyle = `rgba(96, 165, 250, ${(1 - dist / LINK_DISTANCE) * 0.22})`
+            ctx.strokeStyle = `rgba(${palette.line}, ${(1 - dist / LINK_DISTANCE) * palette.lineAlpha})`
             ctx.lineWidth = 1
             ctx.beginPath()
             ctx.moveTo(p.x, p.y)
@@ -66,7 +86,7 @@ export default function AnimatedBackground() {
             ctx.stroke()
           }
         }
-        ctx.fillStyle = 'rgba(34, 211, 238, 0.5)'
+        ctx.fillStyle = `rgba(${palette.dot}, ${palette.dotAlpha})`
         ctx.beginPath()
         ctx.arc(p.x, p.y, 1.6, 0, Math.PI * 2)
         ctx.fill()
@@ -114,6 +134,11 @@ export default function AnimatedBackground() {
       glowRef.current?.style.setProperty('--py', `${event.clientY}px`)
     }
     const onVisibility = () => (document.hidden ? stop() : start())
+    // Pick up the new colours as soon as the theme changes; also repaints when animation is paused
+    const unsubscribe = subscribeToTheme(() => {
+      palette = readPalette()
+      draw()
+    })
 
     resize()
     start()
@@ -122,6 +147,7 @@ export default function AnimatedBackground() {
     document.addEventListener('visibilitychange', onVisibility)
     return () => {
       stop()
+      unsubscribe()
       window.removeEventListener('resize', resize)
       window.removeEventListener('pointermove', onPointer)
       document.removeEventListener('visibilitychange', onVisibility)

@@ -22,17 +22,17 @@
 }
 
 .primary {
-  background: var(--gradient-accent);
+  background: var(--gradient-accent-fill);
   color: var(--color-on-accent);
   box-shadow: var(--glow-cyan);
 }
 
 .primary:hover {
-  box-shadow: 0 0 34px rgba(34, 211, 238, 0.55);
+  box-shadow: var(--glow-cyan-strong);
 }
 
 .ghost {
-  background: rgba(17, 26, 48, 0.6);
+  background: var(--color-surface-glass);
   color: var(--color-text);
   border-color: var(--color-border);
   backdrop-filter: blur(8px);

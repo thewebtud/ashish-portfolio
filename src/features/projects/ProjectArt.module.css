@@ -1,13 +1,17 @@
 .art {
-  --a: #22d3ee;
-  --b: #60a5fa;
+  --a: var(--color-cyan);
+  --b: var(--color-blue);
   position: relative;
   display: grid;
   place-items: center;
   height: 7rem;
   overflow: hidden;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, color-mix(in srgb, var(--a) 28%, #060a14), color-mix(in srgb, var(--b) 16%, #060a14));
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--a) 28%, var(--color-bg)),
+    color-mix(in srgb, var(--b) 16%, var(--color-bg))
+  );
   border: 1px solid color-mix(in srgb, var(--a) 35%, transparent);
 }
 
@@ -16,36 +20,36 @@
 }
 
 .cyan {
-  --a: #22d3ee;
-  --b: #60a5fa;
+  --a: var(--color-cyan);
+  --b: var(--color-blue);
 }
 
 .violet {
-  --a: #a78bfa;
-  --b: #f472b6;
+  --a: var(--color-violet);
+  --b: var(--color-pink);
 }
 
 .blue {
-  --a: #60a5fa;
-  --b: #818cf8;
+  --a: var(--color-blue);
+  --b: var(--color-indigo);
 }
 
 .green {
-  --a: #34d399;
-  --b: #22d3ee;
+  --a: var(--color-green);
+  --b: var(--color-cyan);
 }
 
 .amber {
-  --a: #fbbf24;
-  --b: #fb923c;
+  --a: var(--color-amber);
+  --b: var(--color-orange);
 }
 
 .grid {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    linear-gradient(var(--art-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--art-grid-line) 1px, transparent 1px);
   background-size: 22px 22px;
 }
 
