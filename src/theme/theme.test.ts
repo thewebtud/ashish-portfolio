@@ -15,29 +15,32 @@ import {
 resetThemeEnvironment()
 
 let media: MatchMediaControl | undefined
-let cleanup: (() => void) | undefined
 afterEach(() => {
-  cleanup?.()
   media?.restore()
-  cleanup = undefined
   media = undefined
 })
 
 const start = (opts: { light?: boolean; reduced?: boolean } = {}) => {
   media = mockMatchMedia(opts)
-  cleanup = initTheme()
+  initTheme()
 }
 
 const meta = () => document.querySelector<HTMLMetaElement>('meta[name="theme-color"]')
 
 describe('initial theme', () => {
-  it('uses dark when the system has no light preference', () => {
+  it('uses dark by default', () => {
     start()
     expect(getTheme()).toBe('dark')
   })
 
-  it('uses light when the system prefers light', () => {
+  it('uses dark even when the system prefers light', () => {
     start({ light: true })
+    expect(getTheme()).toBe('dark')
+  })
+
+  it('uses a stored light choice even when the system prefers dark', () => {
+    localStorage.setItem(THEME_STORAGE_KEY, 'light')
+    start()
     expect(getTheme()).toBe('light')
   })
 
@@ -51,7 +54,7 @@ describe('initial theme', () => {
     localStorage.setItem(THEME_STORAGE_KEY, 'sepia')
     expect(readStoredTheme()).toBeNull()
     start({ light: true })
-    expect(getTheme()).toBe('light')
+    expect(getTheme()).toBe('dark')
   })
 
   it('keeps the theme set before first paint by the inline script', () => {
@@ -64,7 +67,7 @@ describe('initial theme', () => {
     const original = window.matchMedia
     // @ts-expect-error simulate an environment without matchMedia
     window.matchMedia = undefined
-    cleanup = initTheme()
+    initTheme()
     expect(getTheme()).toBe('dark')
     window.matchMedia = original
   })
@@ -109,25 +112,18 @@ describe('toggling', () => {
     expect(getTheme()).toBe('light')
   })
 
-  it('falls back to the system preference when reading storage throws', () => {
+  it('falls back to dark when reading storage throws', () => {
     vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
       throw new Error('blocked')
     })
     start({ light: true })
-    expect(getTheme()).toBe('light')
+    expect(getTheme()).toBe('dark')
   })
 })
 
 describe('system preference changes', () => {
-  it('follows the system while no choice is stored', () => {
+  it('never changes the theme', () => {
     start()
-    act(() => media!.setLight(true))
-    expect(getTheme()).toBe('light')
-  })
-
-  it('ignores the system once an explicit choice is stored', () => {
-    start()
-    setTheme('dark')
     act(() => media!.setLight(true))
     expect(getTheme()).toBe('dark')
   })

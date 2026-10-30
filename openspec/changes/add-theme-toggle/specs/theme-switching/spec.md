@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Lets visitors switch the whole portfolio between a dark and a light theme from the top navigation, defaulting to their system preference and remembering their choice.
+Lets visitors switch the whole portfolio between a dark and a light theme from the top navigation, defaulting to dark and remembering their choice.
 
 ## ADDED Requirements
 
@@ -59,35 +59,31 @@ The toggle SHALL show a tooltip with its action text (for example "Switch to lig
 - **WHEN** the visitor taps the toggle on a touch device
 - **THEN** the theme switches and no hover-only information is required to use it
 
-### Requirement: Default theme from system preference
-When the visitor has not made an explicit choice, the app SHALL use the theme matching the system colour-scheme preference, and SHALL use the dark theme if no preference is available.
+### Requirement: Dark theme by default
+When the visitor has not made an explicit choice, the app SHALL use the dark theme, regardless of the system colour-scheme preference.
 
 #### Scenario: System prefers light
 - **WHEN** a first-time visitor whose system prefers a light colour scheme opens the site
-- **THEN** the light theme is shown
+- **THEN** the dark theme is shown
 
 #### Scenario: System prefers dark
 - **WHEN** a first-time visitor whose system prefers a dark colour scheme opens the site
 - **THEN** the dark theme is shown
 
-#### Scenario: No preference available
-- **WHEN** the system reports no colour-scheme preference
-- **THEN** the dark theme is shown
-
 #### Scenario: System preference changes while no choice is stored
 - **WHEN** the visitor has never used the toggle and the system preference changes while the site is open
-- **THEN** the app follows the new system preference
+- **THEN** the theme does not change
 
 ### Requirement: Persisted explicit choice
-The app SHALL remember the visitor's explicit theme choice in the browser, restore it on later visits, and give it priority over the system preference. The app SHALL continue to work with the default theme if storage is unavailable.
+The app SHALL remember the visitor's explicit theme choice in the browser, restore it on later visits, and give it priority over the dark default. The app SHALL continue to work with the default theme if storage is unavailable.
 
 #### Scenario: Choice survives reload
 - **WHEN** the visitor selects the light theme and reloads the page
 - **THEN** the light theme is shown
 
-#### Scenario: Choice overrides system preference
-- **WHEN** the visitor stored "dark" and their system now prefers light
-- **THEN** the dark theme is shown
+#### Scenario: Choice overrides the default
+- **WHEN** the visitor stored "light" and their system prefers dark
+- **THEN** the light theme is shown
 
 #### Scenario: Storage unavailable
 - **WHEN** browser storage is blocked or throws an error
@@ -95,7 +91,7 @@ The app SHALL remember the visitor's explicit theme choice in the browser, resto
 
 #### Scenario: Invalid stored value
 - **WHEN** the stored value is not a valid theme
-- **THEN** it is ignored and the system-preference default is used
+- **THEN** it is ignored and the dark default is used
 
 ### Requirement: No flash of the wrong theme
 The selected theme SHALL be applied before the first paint of the page, so a visitor never sees the wrong theme flash on load or reload.

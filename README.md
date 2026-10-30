@@ -58,7 +58,7 @@ src/
 
 The site has a dark and a light theme, switched with the sun/moon button in the top bar.
 
-- **Selection:** a visitor's explicit choice is stored in `localStorage` under `portfolio-theme` (`light` or `dark`). Without a stored choice the system colour scheme is used (dark if there is no preference), and the site follows system changes until the button is used.
+- **Selection:** a visitor's explicit choice is stored in `localStorage` under `portfolio-theme` (`light` or `dark`). Without a stored choice the site is dark, regardless of the OS colour scheme.
 - **No flash:** a small inline script in [`index.html`](index.html) sets `data-theme` on `<html>` before first paint. The logic mirrors [`src/theme/theme.ts`](src/theme/theme.ts), which owns the runtime state; React reads it with the `useTheme` hook.
 - **Tokens:** all colours live in [`src/styles/tokens.css`](src/styles/tokens.css). `:root` holds the dark values and `:root[data-theme='light']` overrides them. Components must only use tokens (for example `var(--color-surface-glass)`), never raw colours.
 - **Adding a colour:** define the token in both blocks, then use `var(--your-token)`. Keep text and icons at least 4.5:1 (large text 3:1) against the surfaces they sit on in **both** themes, and re-run the checks below.

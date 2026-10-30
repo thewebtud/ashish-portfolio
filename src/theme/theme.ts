@@ -28,22 +28,17 @@ function writeStoredTheme(theme: Theme) {
   }
 }
 
-export function getSystemTheme(): Theme {
-  try {
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
-  } catch {
-    return 'dark'
-  }
-}
+export const DEFAULT_THEME: Theme = 'dark'
 
+/** A stored choice wins; otherwise dark, regardless of the OS colour scheme. */
 export function resolveInitialTheme(): Theme {
-  return readStoredTheme() ?? getSystemTheme()
+  return readStoredTheme() ?? DEFAULT_THEME
 }
 
 /** The `data-theme` attribute on <html> is the single source of truth. */
 export function getTheme(): Theme {
   const value = document.documentElement.dataset.theme
-  return isTheme(value) ? value : 'dark'
+  return isTheme(value) ? value : DEFAULT_THEME
 }
 
 function prefersReducedMotion(): boolean {
@@ -97,24 +92,9 @@ export function subscribeToTheme(listener: () => void) {
   }
 }
 
-/**
- * Syncs the DOM with the resolved theme (the inline script in index.html normally did this
- * already) and follows system changes while no explicit choice is stored.
- */
-export function initTheme(): () => void {
+/** Syncs the DOM with the resolved theme (the inline script in index.html normally did this already). */
+export function initTheme() {
   const current = document.documentElement.dataset.theme
   apply(isTheme(current) ? current : resolveInitialTheme(), false)
   updateThemeColorMeta(getTheme())
-
-  let mql: MediaQueryList | undefined
-  const onSystemChange = () => {
-    if (readStoredTheme() === null) apply(getSystemTheme(), true)
-  }
-  try {
-    mql = window.matchMedia('(prefers-color-scheme: light)')
-    mql.addEventListener('change', onSystemChange)
-  } catch {
-    // matchMedia unavailable: keep the current theme
-  }
-  return () => mql?.removeEventListener('change', onSystemChange)
 }

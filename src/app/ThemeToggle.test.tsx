@@ -9,17 +9,14 @@ import { ThemeToggle } from './ThemeToggle'
 resetThemeEnvironment()
 
 let media: MatchMediaControl | undefined
-let cleanup: (() => void) | undefined
 afterEach(() => {
-  cleanup?.()
   media?.restore()
-  cleanup = undefined
   media = undefined
 })
 
 const start = (opts: { light?: boolean; reduced?: boolean } = {}) => {
   media = mockMatchMedia(opts)
-  cleanup = initTheme()
+  initTheme()
 }
 
 describe('ThemeToggle', () => {
@@ -32,7 +29,8 @@ describe('ThemeToggle', () => {
   })
 
   it('names the action and flips the icon while in light theme', () => {
-    start({ light: true })
+    localStorage.setItem(THEME_STORAGE_KEY, 'light')
+    start()
     render(<ThemeToggle />)
     expect(screen.getByRole('button', { name: 'Switch to dark theme' })).toHaveAttribute('data-theme-toggle', 'light')
   })
@@ -77,7 +75,6 @@ describe('persistence', () => {
     expect(localStorage.getItem(THEME_STORAGE_KEY)).toBe('light')
 
     first.unmount()
-    cleanup?.()
     document.documentElement.removeAttribute('data-theme') // simulates a fresh page load before the inline script
     start()
     render(<ThemeToggle />)
