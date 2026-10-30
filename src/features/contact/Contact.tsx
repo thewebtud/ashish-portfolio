@@ -36,6 +36,30 @@ function Channel({ icon, label, value, href, external }: ChannelProps) {
   )
 }
 
+function PhoneCard({ phones }: { phones: string[] }) {
+  return (
+    <TiltCard className={styles.tilt}>
+      <div className={styles.channel}>
+        <span className={styles.icon} aria-hidden="true">
+          <FaPhone />
+        </span>
+        <span className={styles.text}>
+          <span className={`${styles.label} mono`}>{phones.length > 1 ? 'Phones' : 'Phone'}</span>
+          <ul className={styles.phones}>
+            {phones.map((phone) => (
+              <li key={phone}>
+                <a className={styles.phoneLink} href={phoneHref(phone)}>
+                  {formatPhone(phone)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </span>
+      </div>
+    </TiltCard>
+  )
+}
+
 export function Contact() {
   // Built at render time so the details are never literal strings in the built HTML
   const contact = getContactDetails()
@@ -54,18 +78,13 @@ export function Contact() {
             <Channel icon={<FaEnvelope />} label="Email" value={contact.email} href={`mailto:${contact.email}`} />
           </Reveal>
         </li>
-        {contact.phones.map((phone, i) => (
-          <li key={phone}>
-            <Reveal delay={0.06 * (i + 1)}>
-              <Channel
-                icon={<FaPhone />}
-                label={contact.phones.length > 1 ? `Phone ${i + 1}` : 'Phone'}
-                value={formatPhone(phone)}
-                href={phoneHref(phone)}
-              />
+        {contact.phones.length > 0 && (
+          <li>
+            <Reveal delay={0.06}>
+              <PhoneCard phones={contact.phones} />
             </Reveal>
           </li>
-        ))}
+        )}
         <li>
           <Reveal delay={0.18}>
             <Channel icon={<FaLinkedinIn />} label="LinkedIn" value="devnextcubical" href={contact.linkedin} external />

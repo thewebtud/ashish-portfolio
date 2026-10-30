@@ -16,10 +16,15 @@ describe('Contact', () => {
     expect(link).toHaveAttribute('href', 'mailto:ashish.codes2@gmail.com')
   })
 
-  it('shows both phone numbers as tel links', () => {
+  it('shows both phone numbers as tel links in a single card', () => {
     setup()
-    expect(screen.getByRole('link', { name: /\+91-8979513242/ })).toHaveAttribute('href', 'tel:+918979513242')
-    expect(screen.getByRole('link', { name: /\+91-9625977569/ })).toHaveAttribute('href', 'tel:+919625977569')
+    const first = screen.getByRole('link', { name: /\+91-8979513242/ })
+    const second = screen.getByRole('link', { name: /\+91-9625977569/ })
+    expect(first).toHaveAttribute('href', 'tel:+918979513242')
+    expect(second).toHaveAttribute('href', 'tel:+919625977569')
+    expect(first.closest('ul')).toBe(second.closest('ul'))
+    expect(first.closest('li')).not.toBe(second.closest('li'))
+    expect(screen.getAllByText('Phones')).toHaveLength(1)
   })
 
   it('opens LinkedIn in a new tab with noopener noreferrer', () => {

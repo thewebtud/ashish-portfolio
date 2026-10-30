@@ -59,8 +59,6 @@ export function NavBar() {
           </ul>
         </nav>
 
-        <ThemeToggle />
-
         <button
           ref={toggleRef}
           type="button"
@@ -72,6 +70,8 @@ export function NavBar() {
         >
           {open ? <FaXmark aria-hidden="true" /> : <FaBars aria-hidden="true" />}
         </button>
+
+        <ThemeToggle />
       </div>
     </header>
   )

@@ -10,8 +10,18 @@
   }
 }
 
+@media (min-width: 62rem) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 .grid > li {
   min-width: 0;
+}
+
+.grid > li > * {
+  height: 100%;
 }
 
 .tilt {
@@ -64,6 +74,20 @@
 .value {
   font-weight: 600;
   overflow-wrap: anywhere;
+}
+
+.phones {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.phoneLink {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.phoneLink:hover {
+  color: var(--color-cyan);
 }
 
 .resume {

@@ -105,6 +105,53 @@ describe('persistence', () => {
   })
 })
 
+describe('tooltip', () => {
+  it('shows the same text as the accessible name and stays out of the accessibility tree', () => {
+    start()
+    render(<ThemeToggle />)
+    const tooltip = screen.getByTestId('theme-tooltip')
+    expect(tooltip).toHaveTextContent('Switch to light theme')
+    expect(tooltip).toHaveAttribute('aria-hidden', 'true')
+    expect(screen.getAllByText('Switch to light theme')).toHaveLength(1) // aria-label is not text
+  })
+
+  it('updates with the theme', async () => {
+    const user = userEvent.setup()
+    start()
+    render(<ThemeToggle />)
+    await user.click(screen.getByRole('button'))
+    expect(screen.getByTestId('theme-tooltip')).toHaveTextContent('Switch to dark theme')
+  })
+
+  it('can be dismissed with Escape and returns when focus leaves and comes back', async () => {
+    const user = userEvent.setup()
+    start()
+    render(<ThemeToggle />)
+    const tooltip = screen.getByTestId('theme-tooltip')
+    screen.getByRole('button').focus()
+    expect(tooltip).not.toHaveAttribute('data-dismissed')
+
+    await user.keyboard('{Escape}')
+    expect(tooltip).toHaveAttribute('data-dismissed', 'true')
+
+    await user.tab()
+    expect(tooltip).not.toHaveAttribute('data-dismissed')
+  })
+
+  it('is reset when the pointer leaves', async () => {
+    const user = userEvent.setup()
+    start()
+    render(<ThemeToggle />)
+    const button = screen.getByRole('button')
+    await user.hover(button)
+    button.focus()
+    await user.keyboard('{Escape}')
+    expect(screen.getByTestId('theme-tooltip')).toHaveAttribute('data-dismissed', 'true')
+    await user.unhover(button)
+    expect(screen.getByTestId('theme-tooltip')).not.toHaveAttribute('data-dismissed')
+  })
+})
+
 describe('NavBar placement', () => {
   it('renders the toggle in the top bar next to the menu button, outside the collapsible nav', () => {
     start()
@@ -112,6 +159,8 @@ describe('NavBar placement', () => {
     const toggle = screen.getByRole('button', { name: /switch to (light|dark) theme/i })
     const nav = screen.getByRole('navigation', { name: 'Primary' })
     expect(within(nav).queryByRole('button', { name: /switch to/i })).toBeNull()
-    expect(toggle.parentElement).toBe(screen.getByRole('button', { name: /open menu/i }).parentElement)
+    const wrap = toggle.parentElement!
+    expect(wrap.parentElement).toBe(screen.getByRole('button', { name: /open menu/i }).parentElement)
+    expect(wrap).toBe(wrap.parentElement!.lastElementChild)
   })
 })

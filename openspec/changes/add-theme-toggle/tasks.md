@@ -23,6 +23,7 @@
 
 - [x] 4.1 Create `ThemeToggle` (native button, state-based `aria-label`, sun/moon icon from `react-icons/fa6`, 44x44 px, focus ring) and add it to `NavBar` between the primary nav and the hamburger; verify with tests for label, icon, click and keyboard (Enter and Space) and that it is visible at 320px with the mobile menu closed
 - [x] 4.2 Add integration tests that toggling persists to storage, survives a re-render/remount, switches `data-theme` on `<html>`, and works when storage throws; verify `npm test` passes
+- [x] 4.3 Add a tooltip to the toggle (hover and focus, Escape to dismiss, inverted colours for both themes, aria-hidden); verify with tests for text, theme updates and dismissal, and visually in both themes
 
 ## 5. Verification and docs
 

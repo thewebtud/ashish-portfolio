@@ -102,6 +102,7 @@
 @media (max-width: 62rem) {
   .toggle {
     display: inline-flex;
+    margin-left: auto;
   }
 
   .nav {

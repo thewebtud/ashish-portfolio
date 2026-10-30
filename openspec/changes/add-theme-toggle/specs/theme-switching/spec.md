@@ -7,7 +7,7 @@ Lets visitors switch the whole portfolio between a dark and a light theme from t
 ## ADDED Requirements
 
 ### Requirement: Theme toggle in the navigation bar
-The navigation bar SHALL contain a theme toggle button, visible on all viewport widths including when the mobile menu is closed, that switches the app between light and dark themes each time it is activated.
+The navigation bar SHALL contain a theme toggle button at the far right (top-right corner) of the bar, after all other controls, visible on all viewport widths including when the mobile menu is closed, that switches the app between light and dark themes each time it is activated.
 
 #### Scenario: Toggle from dark to light
 - **WHEN** the app is in dark theme and the visitor activates the toggle
@@ -35,6 +35,29 @@ The toggle SHALL be a native button operable by keyboard and touch, SHALL expose
 #### Scenario: Icon reflects the action
 - **WHEN** the dark theme is active
 - **THEN** the toggle shows an icon indicating light mode will be activated, and the reverse in light theme
+
+### Requirement: Toggle tooltip
+The toggle SHALL show a tooltip with its action text (for example "Switch to light theme") when the pointer hovers over it or it has keyboard focus. The tooltip SHALL stay visible while the pointer is over it, SHALL be dismissible with the Escape key without moving focus, SHALL be readable in both themes, and SHALL NOT cause the label to be announced twice by assistive technology.
+
+#### Scenario: Hover
+- **WHEN** the visitor hovers over the toggle
+- **THEN** a tooltip with the action text appears next to it and does not overflow the viewport
+
+#### Scenario: Keyboard focus
+- **WHEN** a keyboard user focuses the toggle
+- **THEN** the same tooltip appears
+
+#### Scenario: Dismiss
+- **WHEN** the tooltip is visible and the visitor presses Escape
+- **THEN** the tooltip hides and focus stays on the toggle
+
+#### Scenario: Text follows the theme
+- **WHEN** the theme changes
+- **THEN** the tooltip text changes to the new action
+
+#### Scenario: Touch
+- **WHEN** the visitor taps the toggle on a touch device
+- **THEN** the theme switches and no hover-only information is required to use it
 
 ### Requirement: Default theme from system preference
 When the visitor has not made an explicit choice, the app SHALL use the theme matching the system colour-scheme preference, and SHALL use the dark theme if no preference is available.
